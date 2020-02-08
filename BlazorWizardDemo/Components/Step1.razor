@@ -1,0 +1,19 @@
+﻿@implements IStep
+<WizardStep Title="Step1">
+    <h2>Step 1</h2>
+    
+    <label>
+        <input type="checkbox" @bind="AllowNext" />
+        Tick to allow next step
+    </label>
+</WizardStep>
+
+@code
+{
+    //[CascadingParameter] WizardStep Parent { get; set; }
+    //public override string Title => "Step 1";
+
+    //public override bool IsValid() => AllowNext;
+
+    private bool AllowNext = false;
+}

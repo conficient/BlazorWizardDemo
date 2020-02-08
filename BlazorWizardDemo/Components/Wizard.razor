@@ -1,0 +1,65 @@
+﻿@* Wizard control *@
+
+<div>
+    <ul class="nav nav-pills nav-justified">
+        @* render the step titles *@
+        @foreach (var step in steps)
+        {
+            <li class="@StepCss(step)"></li>
+        }
+    </ul>
+    <div class="wiz-step">
+        @* render the active step *@
+        @ActiveStep?.Step
+    </div>
+    <hr />
+    <button class="btn btn-primary" type="button" disabled=@PrevDisabled @onclick=@Prev>
+        Previous
+    </button>
+    <button class="btn btn-primary" type="button" disabled=@NextDisabled @onclick=@Next>
+        Next/Submit
+    </button>
+</div>
+@* 'render' the steps *@
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+@code
+{
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    private List<IWizardStep> steps = new List<IWizardStep>();
+
+    public IWizardStep ActiveStep { get; private set; }
+
+    private int activeIndex = -1;
+
+    private int maxIndex = -1;
+
+    public void AddStep(IWizardStep step) {
+        steps.Add(step);
+        // if the first step, set this one as the active step
+        if (ActiveStep == null) SetActiveStep(step);
+        maxIndex = steps.Count - 1;
+    }
+
+    public void SetActiveStep(IWizardStep step)
+    {
+        if(ActiveStep != step)
+        {
+            activeIndex = steps.IndexOf(step);
+            ActiveStep = step;
+            StateHasChanged();
+        }
+    }
+
+    private string StepCss(IWizardStep step) => (ActiveStep == step) ? "active" : "disabled";
+
+    protected string PrevDisabled => "disabled";
+    protected string NextDisabled => "disabled";
+
+    void Prev() => throw new NotImplementedException();
+
+    void Next() => throw new NotImplementedException();
+
+}
