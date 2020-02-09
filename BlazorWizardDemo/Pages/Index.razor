@@ -1,13 +1,23 @@
-﻿@page "/"
+﻿@using BlazorWizardDemo.Components.Example
+@page "/"
 
 <h1>Blazor Wizard Demo</h1>
 
-<p>Todo</p>
-
 <Wizard>
-    <WizardStep Title="Step 1">
+    <WizardStep Title="Step 1" IsValid="@model.AgreeTerms">
         <Step1 />
     </WizardStep>
-    <Step2 />
-    <Step3 />
+    <WizardStep Title="Step 2" IsValid="@model.Step2ok">
+        <Step2 />
+    </WizardStep>
+    <WizardStep Title="Step 3">
+        <Step3 />
+    </WizardStep>
 </Wizard>
+
+@code 
+{
+    public EventCallback OnComplete { get; set; }
+
+    Model model = new Model();
+}

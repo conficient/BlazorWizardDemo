@@ -2,14 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorWizardDemo.Components
 {
-    /// <summary>
-    /// Interface each step implements to talk to the parent wizard
-    /// </summary>
     public interface IWizardStep
     {
         /// <summary>
@@ -23,9 +19,14 @@ namespace BlazorWizardDemo.Components
         string Title { get; }
 
         /// <summary>
-        /// Is the step valid - if it is we can proceed
+        /// Return validity for this step
         /// </summary>
         /// <returns></returns>
-        bool IsValid();
+        bool IsValid { get; set; }
+
+        ///// <summary>
+        ///// Event raised when validity changes
+        ///// </summary>
+        //event Action<bool> OnValidChanged;
     }
 }

@@ -1,0 +1,17 @@
+﻿@namespace BlazorWizardDemo.Example
+<h2>DRlrvy</h2>
+
+<p>
+    Tick this box to allow next step
+</p>
+<label>
+    <input type="checkbox" @bind="@model.AgreeTerms" />
+    I agree to the terms and conditions of this service
+</label>
+
+@code
+{
+
+    [Parameter] public RentalModel model { get; set; }
+
+}

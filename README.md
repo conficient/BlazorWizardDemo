@@ -15,13 +15,14 @@ components in the child content, using `[CascadingProperty]` to communicate betw
 the `Tab` and the parent `TabSet`.
 
 This design is simple and works well. Each each `Tab` has to render some content 
-for the menu, which allows the Tabs to 'exist' in the render.
+for the menu, which allows the Tabs to 'exist' in the render. A Wizard would be slightly different, 
+as each step would need to be enabled or disabled based on whether it was 'complete'.
 
-Ideally I want the parent wizard render the menu.
+The wizard would also have a [Next] and [Prev] buttons.
 
-What we want is a wizard component that contains a number of steps:
+So we want a wizard component that contains a number of steps. My first idea was to allow each step
+to be a custom component containing the content for the step, and also implementing an interface.
 
-but it would be great if we could do this:
 ```
 <Wizard>
   <Step1 />
@@ -59,3 +60,7 @@ If we re-use the tab example, we have HTML something like this:
 ```
 
 This would work but a lot of the logic is now in this screen, but it works
+
+Flow of messages
+
+![Dalek Class](http://yuml.me/diagram/plain;dir:LR;scale:80/class/,%20%5BModel%5D%20-%3E%20%5BStep%5D,%20%5BContent%5D-%3E%5BStep%5D,%20%5BStep%5D-%3E%5BWizard%5D.png)

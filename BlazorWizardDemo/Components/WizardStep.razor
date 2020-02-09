@@ -1,4 +1,6 @@
 ﻿
-<CascadingValue Value="this">
-    @ChildContent
-</CascadingValue>
+<li class="nav-item ">
+    <a class="nav-link @LinkCSS" href="#" @onclick="@(()=> Parent.SetActiveStep(this))">
+        @Title
+    </a>
+</li>
