@@ -1,17 +1,17 @@
-﻿@using BlazorWizardDemo.Components.Example
+﻿@using BlazorWizardDemo.Example
 @page "/"
 
 <h1>Blazor Wizard Demo</h1>
 
 <Wizard>
-    <WizardStep Title="Step 1" IsValid="@model.AgreeTerms">
-        <Step1 />
+    <WizardStep Title="Step 1" IsValid="@model.Step1OK">
+        <Step1 Model="model" />
     </WizardStep>
-    <WizardStep Title="Step 2" IsValid="@model.Step2ok">
-        <Step2 />
+    <WizardStep Title="Step 2" IsValid="@model.Step2OK">
+        <Step2 Model="model" />
     </WizardStep>
-    <WizardStep Title="Step 3">
-        <Step3 />
+    <WizardStep Title="Step 3"> @* not set *@
+        <Step3 Model="model" />
     </WizardStep>
 </Wizard>
 
@@ -19,5 +19,5 @@
 {
     public EventCallback OnComplete { get; set; }
 
-    Model model = new Model();
+    RentalModel model = new RentalModel();
 }

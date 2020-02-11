@@ -64,3 +64,8 @@ This would work but a lot of the logic is now in this screen, but it works
 Flow of messages
 
 ![Dalek Class](http://yuml.me/diagram/plain;dir:LR;scale:80/class/,%20%5BModel%5D%20-%3E%20%5BStep%5D,%20%5BContent%5D-%3E%5BStep%5D,%20%5BStep%5D-%3E%5BWizard%5D.png)
+
+## IsValid flag
+
+Each step has to have a way of telling the parent wizard if it is complete or not. This has to be available
+for the Wizard to read when it's registering each step. If the value changes
