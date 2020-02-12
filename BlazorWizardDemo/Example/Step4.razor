@@ -1,0 +1,16 @@
+﻿@namespace  BlazorWizardDemo.Example
+<h4>
+    Step 4 - select payment type
+</h4>
+<label>Select Payment Type:</label>
+<select @bind="Model.PaymentType">
+    <option value="">[payment type]</option>
+    <option value="CreditCard">Credit Card</option>
+    <option value="Payment">PayPal</option>
+    <option value="Cash">Brown envelope stuffed with cash</option>
+</select>
+@code
+{
+    [Parameter] public RentalModel Model { get; set; }
+
+}

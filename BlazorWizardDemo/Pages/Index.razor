@@ -3,6 +3,7 @@
 
 <h1>Blazor Wizard Demo</h1>
 
+<h2>Dodge-E Car Rental</h2>
 <Wizard>
     <WizardStep Title="Step 1" IsValid="@model.Step1OK">
         <Step1 Model="model" />
@@ -10,14 +11,38 @@
     <WizardStep Title="Step 2" IsValid="@model.Step2OK">
         <Step2 Model="model" />
     </WizardStep>
-    <WizardStep Title="Step 3"> @* not set *@
-        <Step3 Model="model" />
+    @if(model.ChildSeatsRequired)
+    {
+        @* we only show this step if child seats are selected *@
+        <WizardStep Title="Step 3"> @* not set *@
+            <Step3 Model="model" />
+        </WizardStep>
+    }
+    <WizardStep Title="Step 4"> @* not set *@
+        <Step4 Model="model" />
     </WizardStep>
 </Wizard>
 
 @code 
 {
+
+    // TODO
     public EventCallback OnComplete { get; set; }
 
+    /// <summary>
+    /// The model we are using for the Wizard
+    /// </summary>
     RentalModel model = new RentalModel();
+
+    protected override void OnInitialized()
+    {
+        // if model changes, refresh the wizard
+        // this computes the steps/visibility
+        model.OnChange += () =>
+        {
+            StateHasChanged();
+        };
+        base.OnInitialized();
+    }
+
 }

@@ -189,3 +189,11 @@ app {
     border-right: 1px solid #dee2e6;
     border-bottom: 1px solid #dee2e6;
 }
+
+.car-thumbnail {
+    height: 75px;
+}
+
+.selected {
+    background-color: rgba(123, 229, 174, 0.46);
+}

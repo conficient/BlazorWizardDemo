@@ -1,9 +1,30 @@
 ﻿@namespace BlazorWizardDemo.Example
-<p>
-    This is the second step
-</p>
+<h4>Select Rental Car</h4>
+<Field Label="Select car type">
+    @foreach (var car in Model.GetCars())
+    {
+        var selected = car.Name == Model.CarType;
+        var css = selected ? "selected" : "";
+        var btnCSS = selected ? "btn-default" : "btn-primary";
+        var disable = selected ? "disabled" : null;
+        <div class="media @css">
+            <img alt="@car.Name" src="@car.Image" class="car-thumbnail mr-3" />
+            <div class="media-body">
+                <h5 class="mt-0">@car.Name</h5>
+                <button class="btn btn-sm @btnCSS" disabled="@disable" 
+                        @onclick="@(()=> Model.CarType = car.Name)">Select</button>
+            </div>
+        </div>
+    }
+</Field>
+<Field Label="Child Seats">
+    <label>
+        <input type="checkbox" @bind="@Model.ChildSeatsRequired" />
+        I need a child car seat
+    </label>
+</Field>
 @code
 {
     [Parameter] public RentalModel Model { get; set; }
-    
+
 }
