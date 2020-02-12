@@ -13,9 +13,13 @@ namespace BlazorWizardDemo.Example
         /// </summary>
         public bool IsOver18 { get; set; }
 
-        public bool Step1OK => IsOver18;
+        public bool AgreeToTerms { get; set; }
+
+        public bool Step1OK => IsOver18 & AgreeToTerms;
+
         public bool Step2OK => true;
-        public bool Step3OK => IsOver18;
+
+        public bool Step3OK => true;
 
     }
 }
