@@ -14,11 +14,11 @@
     @if(model.ChildSeatsRequired)
     {
         @* we only show this step if child seats are selected *@
-        <WizardStep Title="Step 3"> @* not set *@
+        <WizardStep Title="Step 3" IsValid="@model.Step3OK"> 
             <Step3 Model="model" />
         </WizardStep>
     }
-    <WizardStep Title="Step 4"> @* not set *@
+    <WizardStep Title="Step 4" IsValid="@model.Step4OK"> 
         <Step4 Model="model" />
     </WizardStep>
 </Wizard>

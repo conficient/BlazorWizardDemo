@@ -32,6 +32,9 @@ namespace BlazorWizardDemo.Example
         }
         private bool _isOver18 = false;
 
+        /// <summary>
+        /// Customer needs to agree to terms
+        /// </summary>
         public bool AgreeToTerms
         {
             get => _agreeToTerms;
@@ -44,7 +47,7 @@ namespace BlazorWizardDemo.Example
         private bool _agreeToTerms = false;
 
         // Flag for Step1 
-        public bool Step1OK => IsOver18 & AgreeToTerms;
+        public bool Step1OK() => IsOver18 & AgreeToTerms;
 
         // STEP 2
         // ======
@@ -58,7 +61,7 @@ namespace BlazorWizardDemo.Example
         }
         private string _carType = null;
 
-        public List<Car> GetCars()
+        public static List<Car> GetCars()
         {
             return new List<Car>() {
                 new Car("Ford Focus", "/img/fiesta.png"),
@@ -85,7 +88,7 @@ namespace BlazorWizardDemo.Example
         /// <summary>
         /// Flag for Step2 - a car must be selected
         /// </summary>
-        public bool Step2OK => !string.IsNullOrEmpty(CarType);
+        public bool Step2OK() => !string.IsNullOrEmpty(CarType);
 
         // STEP 3 
         // ======
@@ -93,7 +96,7 @@ namespace BlazorWizardDemo.Example
 
         public string ChildSeatType { get; set; }
 
-        public bool Step3OK => true;
+        public bool Step3OK() => true;
 
         // STEP 4
         // ======
@@ -108,7 +111,7 @@ namespace BlazorWizardDemo.Example
         /// <summary>
         /// Final step - valid if payment type selected
         /// </summary>
-        public bool Step4OK => !string.IsNullOrEmpty(PaymentType);
+        public bool Step4OK() => !string.IsNullOrEmpty(PaymentType);
 
     }
 }

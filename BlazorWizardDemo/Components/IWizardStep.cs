@@ -19,10 +19,9 @@ namespace BlazorWizardDemo.Components
         string Title { get; }
 
         /// <summary>
-        /// Return validity for this step
+        /// Function to return if step is valid
         /// </summary>
-        /// <returns></returns>
-        bool IsValid { get; set; }
+        public Func<bool> IsValid { get; set; }
 
         ///// <summary>
         ///// Event raised when validity changes

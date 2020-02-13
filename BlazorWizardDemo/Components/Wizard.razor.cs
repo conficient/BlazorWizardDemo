@@ -42,8 +42,10 @@ namespace BlazorWizardDemo.Components
             // if previous index was valid..
             if(maxValid == maxValid - 1)
             {
+                // check step validity function (if not set, assume step is valid)
+                bool valid = step.IsValid == null ? true : step.IsValid();
                 // if is valid, set max valid to this
-                if (step.IsValid)
+                if (valid)
                     maxValid = maxIndex;
             }
         }
@@ -65,7 +67,7 @@ namespace BlazorWizardDemo.Components
         /// <summary>
         /// Is active step valid
         /// </summary>
-        private bool ActiveIsValid => ActiveStep?.IsValid ?? true;
+        private bool ActiveIsValid => (ActiveStep?.IsValid?.Invoke() ?? true);
 
         public bool IsActive(IWizardStep step)
         {
@@ -78,7 +80,7 @@ namespace BlazorWizardDemo.Components
 
         protected string PrevDisabled => Disabled(activeIndex <= 0);
 
-        protected string NextDisabled => Disabled(activeIndex < maxIndex && ActiveIsValid);
+        protected string NextDisabled => Disabled(!(maxIndex >= activeIndex && ActiveIsValid));
 
         /// <summary>
         /// Handle Prev.click

@@ -1,18 +1,25 @@
 ﻿@namespace BlazorWizardDemo.Example
 <h4>Select Rental Car</h4>
 <Field Label="Select car type">
-    @foreach (var car in Model.GetCars())
+    @foreach (var car in RentalModel.GetCars())
     {
         var selected = car.Name == Model.CarType;
         var css = selected ? "selected" : "";
-        var btnCSS = selected ? "btn-default" : "btn-primary";
-        var disable = selected ? "disabled" : null;
-        <div class="media @css">
+        <div class="media p-3 @css">
             <img alt="@car.Name" src="@car.Image" class="car-thumbnail mr-3" />
             <div class="media-body">
                 <h5 class="mt-0">@car.Name</h5>
-                <button class="btn btn-sm @btnCSS" disabled="@disable" 
-                        @onclick="@(()=> Model.CarType = car.Name)">Select</button>
+                @if (!selected)
+                {
+                    <button class="btn btn-sm btn-primary"
+                            @onclick="@(()=> Model.CarType = car.Name)">
+                        Select
+                    </button>
+                }
+                else
+                {
+                    <b><i>Selected</i></b>
+                }
             </div>
         </div>
     }

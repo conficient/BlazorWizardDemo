@@ -1,12 +1,14 @@
 ﻿@namespace BlazorWizardDemo.Example
-<h4>Age Check</h4>
-<Field Label="Age Check">
+
+<h4>Getting Started</h4>
+
+<Field Label="Age Check" Help="Sorry, only people aged 18+ can rent our cars" >
     <label>
         <input type="checkbox" @bind="@Model.IsOver18" />
-        I at least 18 years old
+        I am 18 years or older
     </label>
 </Field>
-<Field Label="Consent">
+<Field Label="Consent" Help="We know you didn't..">
     <label>
         <input type="checkbox" @bind="@Model.AgreeToTerms" />
         I agree to pretend to have read and agreed to your terms and conditions

@@ -43,9 +43,9 @@ namespace BlazorWizardDemo.Components
         }
 
         /// <summary>
-        /// Is step valid: set via property
+        /// Is step valid: set via paramter returning a function
         /// </summary>
-        [Parameter] public bool IsValid { get; set; } = true;
+        [Parameter] public Func<bool> IsValid { get; set; }
 
         ///// <summary>
         ///// Event alerting consumer the IsValid value changed
